@@ -9,14 +9,33 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+        /*
+            List<Integer> lInts = Stream.of(-1, 7, 8, 9, -2, 1, 2, 5, 4, 6).toList();
+            List<Integer> lShortInts = Stream.of(-1, 9, -2, 1, 2, 0).collect(Collectors.toList());
+            System.out.println("Original List");
+            System.out.println(lShortInts);
+            //streamApiTest();
+            reverseList(lShortInts);
+            generateListRange();
+        */
+        countApplesAndOranges(7, 10, 4, 12, List.of(2, 3, -4), List.of(3, -2, -4));
+    }
 
-        List<Integer> lInts = Stream.of(-1, 7, 8, 9, -2, 1, 2, 5, 4, 6).toList();
-        List<Integer> lShortInts = Stream.of(-1, 9, -2, 1, 2, 0).collect(Collectors.toList());
-        System.out.println("Original List");
-        System.out.println(lShortInts);
-        //streamApiTest();
-        reverseList(lShortInts);
-        generateListRange();
+    public static void countApplesAndOranges(int s, int t, int a, int b, List<Integer> apples, List<Integer> oranges) {
+        //https://www.hackerrank.com/challenges/apple-and-orange/problem
+        long applesCount = apples.stream()
+                .map((apple) -> a + apple)
+                .filter((appleDistance) -> appleDistance >= s && appleDistance <= t)
+                .count();
+
+        var orangeCount = oranges.stream()
+                .map((orange) -> b + orange)
+                .filter((distance) -> distance >= s && distance <= t)
+                .count();
+
+
+        System.out.println(applesCount);
+        System.out.println(orangeCount);
 
     }
 
